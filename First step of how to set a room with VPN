@@ -1,0 +1,6 @@
+The first step of this room is to set up the VPN in case that you don't want to use the virtual machine of tryhackme
+
+You have to install a file in the same page, it ends with OVPN, once installed you should run this command as sudo openvpn and the path of the file
+like this: sudo openvpn (path)
+
+once done this, you have to start the machine of the room and go through the link of the practice https://(GivenIP).p.thmlabs.com/
