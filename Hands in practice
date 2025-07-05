@@ -1,0 +1,68 @@
+Question 1: Once you received the first email, acting as a SOC, this is a practice about a threat simulation, you received the file sample1.exe, this is a executable. You have to analyze the file with the tool provided with the page.
+
+in a real escenary could be Virustotal (https://www.virustotal.com/gui/home/upload)
+
+Once you analyze the file with the has MD5, you received a flag (THM{f3cbf08151a11a6a331db9c6cf5f4fe4})
+
+Question 2: After you received an email with the first flag you also have attached the second file: sample2.exe, also is an executable, in the same way you have to analyze it in the tool provided, once it is done you received three hashes: MD5, SHA1 and SHA256
+
+But with this question the hash file does not work to detect it and get the flag, but after the analysis the file has set up a connection with the IP 154.35.10.113, in the firewall tool provided by the room, you have to set up a rule where you deny any source egrees to the destination 154.35.10.113
+
+Once done this you will receive the flag (THM{2ff48a3421a938b388418be273f4806d})
+
+Question 3:
+
+Now we have the file sample3.exe, you have to analyse also then you should get the hashes, IP networks and domains, in this case you will block the domain with the tool provided by the page.
+
+Once you set up the rule like this
+
+Name	               Category	       Domain	               Action
+Backdoor installer	 Malware	    emudyn.bresonicz.info	    Deny
+
+YOu will receive the flag (THM{4eca9e2f61a19ecd5df34c788e7dce16})
+
+Question 4:
+In this question you received the file sample4.exe, you have to analyze it with the same tool provided, in this case you will get three logs aditional, the first log looks kinda suspicious only with see the name: 	Name: DisableRealtimeMonitoring
+
+You have to set up a sigma rule:
+
+You use the opotions sysmon event logs then select registry modifications (Aditional you have to search it through mitre ATTACK with the keyword (Real-Time Protection) to enhance knowledge)
+
+YOu have to set the rule like this
+
+Registry Key:* HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection
+Registry Name:* DisableRealtimeMonitoring
+Value:* 1
+ATT&CK ID:* Defense Evasion (TA0005)
+
+Once you receive the flag: THM{c956f455fc076aea829799c0876ee399}
+
+Question 4: Now we have received the file outgoing_connections.log
+
+Only a quick log you see that the following IP network (10.10.15.12) has contacted with diferent IP networks in a short range of time
+
+and after analyze the file sample5.exe, you see a suspicious domain: bababa10la.cn and the IP 51.102.10.19
+
+YOu have to set up a sigma builder ruler in sysmon event logs and network connections in this way:
+
+Remote IP:* Any  (THe IP has evolved)
+Remote Port:* Any (The port has evolved
+Size (bytes):* 97  (every packet from the suspicious IP shared 97 bytes)
+Frequency (seconds):* 1800 (Every packet was sent between 1800 seconds)
+ATT&CK ID:* Command and Control (TA0011)
+
+flag: THM{46b21c4410e47dc5729ceadef0fc722e}
+
+Question 6:
+
+Now we have sample6.exe and logs from the system, after analyze the file we see this suspicious activity (2312	cmd.exe	%temp%\exfiltr8.log	text)
+
+So we have to create a new sigma rule in sysmon event logs and file creation and modification in this way:
+
+File Path:* %temp%
+File Name:* exfiltr8.log
+ATT&CK ID:* Exfiltration (TA0010)
+
+flag:  THM{c8951b2ad24bbcbac60c16cf2c83d92c}
+
+
