@@ -26,9 +26,9 @@ In this question you received the file sample4.exe, you have to analyze it with 
 
 You have to set up a sigma rule:
 
-You use the opotions sysmon event logs then select registry modifications (Aditional you have to search it through mitre ATTACK with the keyword (Real-Time Protection) to enhance knowledge)
+You use the option sysmon event logs then select registry modifications (Aditional you have to search it through mitre ATTACK with the keyword (Real-Time Protection) to enhance knowledge)
 
-YOu have to set the rule like this
+You have to set the rule like this
 
 Registry Key:* HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection
 Registry Name:* DisableRealtimeMonitoring
@@ -45,7 +45,7 @@ and after analyze the file sample5.exe, you see a suspicious domain: bababa10la.
 
 YOu have to set up a sigma builder ruler in sysmon event logs and network connections in this way:
 
-Remote IP:* Any  (THe IP has evolved)
+Remote IP:* Any  (The IP has evolved)
 Remote Port:* Any (The port has evolved
 Size (bytes):* 97  (every packet from the suspicious IP shared 97 bytes)
 Frequency (seconds):* 1800 (Every packet was sent between 1800 seconds)
